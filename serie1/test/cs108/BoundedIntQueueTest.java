@@ -8,19 +8,19 @@ class BoundedIntQueueTest {
     @Test
     void testNegativeArgInConstructor(){
         assertThrows(IllegalArgumentException.class, () -> {
-            new BoundedIntQueueBuggy(-1);
+            new BoundedIntQueueBuggy2(-1);
         });
     }
 
     @Test
     void testZeroArgInConstructor(){
-        new BoundedIntQueueBuggy(0);
+        new BoundedIntQueueBuggy2(0);
         //No Exception
     }
 
     @Test
     void testCapacity(){
-        BoundedIntQueueBuggy b = new BoundedIntQueueBuggy(2);
+        BoundedIntQueueBuggy2 b = new BoundedIntQueueBuggy2(2);
         int expected = 2;
         int real = b.capacity();
         assertEquals(expected, real);
@@ -28,7 +28,7 @@ class BoundedIntQueueTest {
 
     @Test
     void testDefaultSize(){
-        BoundedIntQueueBuggy b = new BoundedIntQueueBuggy(0);
+        BoundedIntQueueBuggy2 b = new BoundedIntQueueBuggy2(0);
         int expected = 0;
         int real = b.size();
         assertEquals(expected, real);
@@ -36,7 +36,7 @@ class BoundedIntQueueTest {
 
     @Test
     void testSizeAfterAddingAnElement(){
-        BoundedIntQueueBuggy b = new BoundedIntQueueBuggy(1);
+        BoundedIntQueueBuggy2 b = new BoundedIntQueueBuggy2(1);
         b.addLast(1);
         int expected = 1;
         int real = b.size();
@@ -45,7 +45,7 @@ class BoundedIntQueueTest {
 
     @Test
     void testIsFullWithNoElementCapacityZero(){
-        BoundedIntQueueBuggy b = new BoundedIntQueueBuggy(0);
+        BoundedIntQueueBuggy2 b = new BoundedIntQueueBuggy2(0);
         boolean expected = true;
         boolean real = b.isFull();
         assertEquals(expected, real);
@@ -53,7 +53,7 @@ class BoundedIntQueueTest {
 
     @Test
     void testIsFullWithNoElementCapacityOne(){
-        BoundedIntQueueBuggy b = new BoundedIntQueueBuggy(1);
+        BoundedIntQueueBuggy2 b = new BoundedIntQueueBuggy2(1);
         boolean expected = false;
         boolean real = b.isFull();
         assertEquals(expected, real);
@@ -61,7 +61,7 @@ class BoundedIntQueueTest {
 
     @Test
     void testAddLastWhenCapacityZero(){
-        BoundedIntQueueBuggy b = new BoundedIntQueueBuggy(0);
+        BoundedIntQueueBuggy2 b = new BoundedIntQueueBuggy2(0);
         assertThrows(IllegalStateException.class, () -> {
            b.addLast(2);
         });
@@ -69,14 +69,14 @@ class BoundedIntQueueTest {
 
     @Test
     void testAddLastWhenCapacityOne(){
-        BoundedIntQueueBuggy b = new BoundedIntQueueBuggy(1);
+        BoundedIntQueueBuggy2 b = new BoundedIntQueueBuggy2(1);
         b.addLast(2);
         //No error expected;
     }
 
     @Test
     void testRemoveFirstWithNoElement(){
-        BoundedIntQueueBuggy b = new BoundedIntQueueBuggy(1);
+        BoundedIntQueueBuggy2 b = new BoundedIntQueueBuggy2(1);
         assertThrows(IllegalStateException.class, () -> {
             b.removeFirst();
         });
@@ -84,7 +84,7 @@ class BoundedIntQueueTest {
 
     @Test
     void testRemoveFirstWithOneElement(){
-        BoundedIntQueueBuggy b = new BoundedIntQueueBuggy(1);
+        BoundedIntQueueBuggy2 b = new BoundedIntQueueBuggy2(1);
         b.addLast(2);
         int expected = 2;
         int real = b.removeFirst();
