@@ -6,6 +6,8 @@ package cs108;
  * @author Michel Schinz
  */
 public interface BoundedIntQueue {
+
+
     /**
      * Retourne la capacité de la file, c-à-d le nombre maximum d'éléments
      * qu'elle peut contenir.
