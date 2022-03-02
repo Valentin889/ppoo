@@ -1,6 +1,7 @@
 package cs108;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class Main {
@@ -8,8 +9,14 @@ public class Main {
 
         try {
 
-            int[] b = byteFrequencies("./STAT/file0.bin");
-            System.out.println(entropy(b));
+            int[] b = byteFrequencies("./STAT/file1.bin");
+            int [][]val = stemAndLeaf(b);
+            for (int i = 0; i < val.length; i++) {
+                System.out.println(i);
+                System.out.println(Arrays.toString(val[i]));
+            }
+
+            /*
             b = byteFrequencies("./STAT/file1.bin");
             System.out.println(entropy(b));
             b = byteFrequencies("./STAT/file2.bin");
@@ -20,6 +27,9 @@ public class Main {
             System.out.println(entropy(b));
             b = byteFrequencies("./STAT/file5.bin");
             System.out.println(entropy(b));
+
+            */
+
 
 
 
@@ -76,4 +86,26 @@ public class Main {
         return -H;
     }
 
+
+    private static int[][] stemAndLeaf(int[] freq){
+        int[][] valReturn = new int[26][];
+
+        for (int i = 0; i < freq.length; i+=10) {
+            int val = i / 10;
+            int nb = i!=250 ? 10 : 6;
+
+            int[] valToAdd = new int[nb];
+
+            for (int j = 0; j < nb; j++) {
+
+                valToAdd[j] = freq[i+j];
+            }
+            valReturn[val] = valToAdd;
+        }
+
+
+        return valReturn;
+
+
+    }
 }
