@@ -9,7 +9,7 @@ public class Main {
 
         try {
 
-            int[] b = byteFrequencies("./STAT/file1.bin");
+            int[] b = byteFrequencies("./STAT/file2.bin");
             int [][]val = stemAndLeaf(b);
             for (int i = 0; i < val.length; i++) {
                 System.out.println(i);
