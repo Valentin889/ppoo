@@ -12,7 +12,9 @@ public final class Main {
         // votre avancement.
         //ImageRGB image = RedDisk.IMAGE;
         //Image<ColorRGB> image = Chessboard.IMAGE;
-        Image<ColorRGB> image = new Rotate<>(Chessboard.IMAGE);
+        Image<ColorRGB> image1 = RedDisk.IMAGE;
+        Image<ColorRGB> image2 = new Rotate<>(Chessboard.IMAGE);
+        Image<ColorRGB> image = new Composed(image1,image2);
 
 
         invokeLater(() -> {

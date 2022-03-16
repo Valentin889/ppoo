@@ -1,7 +1,7 @@
 package cs108;
 
 public final class Chessboard implements Image<ColorRGB> {
-    public static final Image<ColorRGB> IMAGE = new Chessboard(0.5);
+    public static final Image<ColorRGB> IMAGE = new Chessboard(1);
     private final double size;
 
     public Chessboard(double size) {
