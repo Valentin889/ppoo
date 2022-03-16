@@ -1,9 +1,7 @@
 package cs108;
 
-import static java.lang.Math.sqrt;
-
-public final class Chessboard implements ImageRGB {
-    public static final ImageRGB IMAGE = new Chessboard(0.5);
+public final class Chessboard implements Image<ColorRGB> {
+    public static final Image<ColorRGB> IMAGE = new Chessboard(0.5);
     private final double size;
 
     public Chessboard(double size) {

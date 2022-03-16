@@ -11,7 +11,8 @@ public final class Main {
         // L'image à afficher, à modifier au fur et à mesure de
         // votre avancement.
         //ImageRGB image = RedDisk.IMAGE;
-        ImageRGB image = Chessboard.IMAGE;
+        //Image<ColorRGB> image = Chessboard.IMAGE;
+        Image<ColorRGB> image = new Rotate<>(Chessboard.IMAGE);
 
 
         invokeLater(() -> {
@@ -33,11 +34,11 @@ public final class Main {
 
     @SuppressWarnings("serial")
     private static final class ImageComponent extends JComponent {
-        private final ImageRGB image;
+        private final Image<ColorRGB> image;
         private final double centerX, centerY;
         private final double width;
 
-        public ImageComponent(ImageRGB image, double centerX, double centerY, double width) {
+        public ImageComponent(Image<ColorRGB> image, double centerX, double centerY, double width) {
             this.image = image;
             this.centerX = centerX;
             this.centerY = centerY;
