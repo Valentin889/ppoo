@@ -46,6 +46,29 @@ public final class BurrowsWheelerTransform {
     }
 
     public static String backward(Pair<Integer, String> p) {
-        throw new Error("à faire");
+
+        if(p.first() >= p.second().length() || p.first() < 0){
+            throw new IndexOutOfBoundsException();
+        }
+
+        int index = p.first();
+        int size = p.second().length();
+        List<StringBuilder> lst = new ArrayList<>();
+
+        for (int i = 0; i < size; i++) {
+            lst.add(new StringBuilder());
+        }
+
+        for (int j = 0; j < size; j++) {
+            for (int i = 0; i < size; i++) {
+                lst.get(i).insert(0, p.second().charAt(i));
+            }
+
+            Collections.sort(lst);
+        }
+
+
+        return lst.get(index).toString();
+
     }
 }
