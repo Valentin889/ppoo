@@ -14,11 +14,36 @@ public final class Main {
         return new LSystem("F", rules, "F", 60);
     }
 
+    private static LSystem Sierpinski(){
+        Map<Character, String> rules = Map.of('A', "+B-A-B+", 'B', "-A+B+A-");
+        return new LSystem("A", rules, "AB", 60);
+    }
+
+    private static LSystem Hilbert(){
+        Map<Character, String> rules = Map.of('A', "-BF+AFA+FB-", 'B', "+AF-BFB-FA+");
+        return new LSystem("A", rules, "F", 90);
+    }
+
+    private static LSystem Arbre(){
+        Map<Character, String> rules = Map.of('F', "FF+[+F-F-F]-[-F+F+F]");
+        return new LSystem("----F", rules, "F", 25);
+    }
+
+    private static LSystem Plante(){
+        Map<Character, String> rules = Map.of('X', "F-[[X]+X]+F[+FX]-X", 'F', "FF");
+        return new LSystem("---X", rules, "F", 30);
+    }
+
+    private static LSystem dragon(){
+        Map<Character, String> rules = Map.of('X', "X+YF+", 'Y', "-FX-Y");
+        return new LSystem("FX", rules, "F", 90);
+    }
+
     public static void main(String[] args) {
         // Le L-système à dessiner
        // LSystem lSystem = koch();
         // LSystem lSystem = new LSystem("F-F++F-F", Map.of(), "F", 60);
-        LSystem lSystem = koch().evolve(4);
+        LSystem lSystem = dragon().evolve(10);
 
         invokeLater(() -> {
             Path2D lSystemPath = LSystemPainter.paint(lSystem);
