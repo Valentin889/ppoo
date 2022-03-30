@@ -16,8 +16,9 @@ public final class Main {
 
     public static void main(String[] args) {
         // Le L-système à dessiner
-        LSystem lSystem = new LSystem("F-F++F-F", Map.of(), "F", 60);
        // LSystem lSystem = koch();
+        // LSystem lSystem = new LSystem("F-F++F-F", Map.of(), "F", 60);
+        LSystem lSystem = koch().evolve(4);
 
         invokeLater(() -> {
             Path2D lSystemPath = LSystemPainter.paint(lSystem);

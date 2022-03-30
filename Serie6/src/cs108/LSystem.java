@@ -41,12 +41,22 @@ public final class LSystem {
     }
 
     public LSystem evolve() {
-        // TODO: à compléter (exercice 2)
-        return null;
+        StringBuilder builder = new StringBuilder();
+        for (Character character : string.toCharArray()) {
+            builder.append(rules.getOrDefault(character, character.toString()));
+        }
+        StringBuilder line = new StringBuilder();
+        for (Character character : lineChars) {
+            line.append(character);
+        }
+        return new LSystem(builder.toString(), rules,  line.toString(), turningAngle);
     }
 
     public LSystem evolve(int steps) {
-        // TODO: à compléter (exercice 2)
-        return null;
+        LSystem system = this;
+        for (int i = 0; i < steps; i++) {
+            system = system.evolve();
+        }
+        return system;
     }
 }
