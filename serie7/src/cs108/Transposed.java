@@ -40,8 +40,5 @@ public class Transposed implements TextImage{
         return valReturn;
     }
 
-    @Override
-    public void printOn(PrintStream stream) {
-        TextImage.super.printOn(stream);
-    }
+
 }

@@ -31,8 +31,5 @@ public class FromChar implements TextImage{
         return new ArrayList<>(Collections.nCopies(HEIGHT,string));
     }
 
-    @Override
-    public void printOn(PrintStream stream) {
-        TextImage.super.printOn(stream);
-    }
+
 }

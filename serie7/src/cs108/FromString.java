@@ -28,8 +28,4 @@ public class FromString implements TextImage{
         return new ArrayList<>(List.of(string));
     }
 
-    @Override
-    public void printOn(PrintStream stream) {
-        TextImage.super.printOn(stream);
-    }
 }

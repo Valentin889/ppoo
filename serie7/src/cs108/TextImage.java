@@ -28,4 +28,12 @@ public interface TextImage {
     default TextImage transposed(){
         return new Transposed(this);
     }
+
+    default TextImage leftOf(TextImage image2){
+        return new LeftOf(this, image2);
+    }
+
+    default TextImage above(TextImage image2){
+        return new Above(this, image2);
+    }
 }
