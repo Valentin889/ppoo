@@ -36,4 +36,11 @@ public interface TextImage {
     default TextImage above(TextImage image2){
         return new Above(this, image2);
     }
+
+    default TextImage framed(){
+        TextImage image1 = new FromString("-".repeat(width() + 2));
+        TextImage image2 = new FromChar(1,height(), '|');
+
+        return  image1.above(image2.leftOf(this).leftOf(image2)).above(image1);
+    }
 }
