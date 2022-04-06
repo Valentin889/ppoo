@@ -12,11 +12,20 @@ public interface TextImage {
         for (String s : drawing()) stream.println(s);
     }
 
-    static FromString fromString(String string){
+    static TextImage fromString(String string){
         return new FromString(string);
     }
 
-    static FromChar filled(int WIDTH, int HEIGHT, char CHAR){
+    static TextImage filled(int WIDTH, int HEIGHT, char CHAR){
         return new FromChar(WIDTH,HEIGHT, CHAR);
+    }
+
+
+    default TextImage flippedHorizontally(){
+        return new FlippedHorizontally(this);
+    }
+
+    default TextImage transposed(){
+        return new Transposed(this);
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 public class FromString implements TextImage{
 
     private final String string;
-    private final int WIDTH = 1;
+    private final int HEIGHT = 1;
 
     public FromString(String string) {
         this.string = string;
@@ -15,12 +15,12 @@ public class FromString implements TextImage{
 
     @Override
     public int width() {
-        return WIDTH;
+        return string.length();
     }
 
     @Override
     public int height() {
-        return string.length();
+        return HEIGHT;
     }
 
     @Override
