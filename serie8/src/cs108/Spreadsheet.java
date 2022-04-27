@@ -65,6 +65,7 @@ public final class Spreadsheet extends Application {
             gridPane.add(cellButton, cell.getColumn() + 1, cell.getRow() + 1);
 
             // TODO: add observer to the cell, and update button's text with new value
+            cell.addObserver(() -> cellButton.setText(String.valueOf(cell.getValue())));
         }
 
         // Add selected cell name and edit field

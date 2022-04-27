@@ -3,7 +3,7 @@ package cs108;
 import java.util.List;
 import java.util.function.IntBinaryOperator;
 
-public final class Cell {
+public final class Cell extends AbstractSubject implements Observer {
     private final int column, row;
 
     private String contentString;
@@ -37,7 +37,10 @@ public final class Cell {
     }
 
     public void setValue(int newValue) {
-        value = newValue;
+        if(newValue != value){
+            value = newValue;
+            onChange();
+        }
     }
 
     public String getFormulaString() {
@@ -45,8 +48,28 @@ public final class Cell {
     }
 
     public void setFormula(String newContentString, List<Cell> newArguments, IntBinaryOperator newOperator) {
+        for (Cell arguments : arguments) {
+            arguments.removeObserver(this);
+        }
         contentString = newContentString;
         arguments = newArguments;
         operator = newOperator;
+        System.out.println(arguments);
+        for (Cell arguments : arguments) {
+            arguments.addObserver(this);
+        }
+        update();
+    }
+
+    @Override
+    public void update() {
+        setValue(
+            arguments.size() == 0
+            ? Integer.parseInt(contentString)
+            : operator.applyAsInt(
+                arguments.get(0).getValue(),
+                arguments.get(1).getValue()
+            )
+        );
     }
 }
