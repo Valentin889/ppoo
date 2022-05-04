@@ -55,4 +55,8 @@ public interface Image<T> {
             return  1.0;
         };
     }
+
+    static <U> Image<U> constant(U param){
+        return (x,y) -> param;
+    }
 }

@@ -23,13 +23,20 @@ public final class Main {
                 Image.Chessboard(ColorRGB.BLACK, ColorRGB.WHITE, 1).Rotated(Math.toRadians(10)),
                 Image.HorizontalGradiendMask
         );
-         */
+
 
         Image<ColorRGB> image = Image.Composed(
                 Image.RedDisk,
                 Image.Chessboard(ColorRGB.BLACK, ColorRGB.WHITE, 1).Rotated(Math.toRadians(10)),
                 Image.mandelbrot(100)
         );
+
+        */
+
+        Image<ColorRGB> white = Image.constant(ColorRGB.WHITE);
+        Image<ColorRGB> black = Image.constant(ColorRGB.BLACK);
+        Image<Double> m = Image.mandelbrot(100);
+        Image<ColorRGB> image = Image.Composed(white, black, m);
 
         invokeLater(() -> {
             try {
