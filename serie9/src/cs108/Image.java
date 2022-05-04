@@ -40,4 +40,19 @@ public interface Image<T> {
             return this.apply(x1, y1);
         };
     }
+
+    static Image<Double> mandelbrot(int maxIt) {
+        return (x, y) -> {
+            Complex c = new Complex(x,y);
+            Complex zn = new Complex(0,0);
+
+            for (int i = 1; i < maxIt; i++) {
+                zn = zn.squared().add(c);
+                if(zn.module() >=2){
+                    return (double)i / maxIt;
+                }
+            }
+            return  1.0;
+        };
+    }
 }

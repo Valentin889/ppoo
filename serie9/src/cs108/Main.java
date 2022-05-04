@@ -16,12 +16,19 @@ public final class Main {
                 new Rotated<>(new Chessboard(ColorRGB.BLACK, ColorRGB.WHITE, 1), Math.toRadians(10)),
                 HorizontalGradientMask.IMAGE);
 
-         */
+
 
         Image<ColorRGB> image = Image.Composed(
                 Image.RedDisk,
                 Image.Chessboard(ColorRGB.BLACK, ColorRGB.WHITE, 1).Rotated(Math.toRadians(10)),
                 Image.HorizontalGradiendMask
+        );
+         */
+
+        Image<ColorRGB> image = Image.Composed(
+                Image.RedDisk,
+                Image.Chessboard(ColorRGB.BLACK, ColorRGB.WHITE, 1).Rotated(Math.toRadians(10)),
+                Image.mandelbrot(100)
         );
 
         invokeLater(() -> {
@@ -49,7 +56,7 @@ public final class Main {
 
         public ImageComponent(Image<ColorRGB> image, double centerX, double centerY, double width) {
             this.image = image;
-            this.centerX = centerX;
+            this.centerX = centerX - 0.6;
             this.centerY = centerY;
             this.width = width;
         }
