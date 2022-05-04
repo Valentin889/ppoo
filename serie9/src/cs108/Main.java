@@ -10,10 +10,19 @@ public final class Main {
     public static void main(String[] args) {
         // L'image à afficher, à modifier au fur et à mesure de
         // votre avancement.
+        /*
         Image<ColorRGB> image = new Composed(
                 RedDisk.IMAGE,
                 new Rotated<>(new Chessboard(ColorRGB.BLACK, ColorRGB.WHITE, 1), Math.toRadians(10)),
                 HorizontalGradientMask.IMAGE);
+
+         */
+
+        Image<ColorRGB> image = Image.Composed(
+                Image.RedDisk,
+                Image.Chessboard(ColorRGB.BLACK, ColorRGB.WHITE, 1).Rotated(Math.toRadians(10)),
+                Image.HorizontalGradiendMask
+        );
 
         invokeLater(() -> {
             try {
