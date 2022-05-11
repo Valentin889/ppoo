@@ -21,28 +21,41 @@ public final class Main extends Application {
 
 
 
-
         imageView.setOnMouseClicked(e -> {
-            if(e.getClickCount() == 2){
-                Rectangle rectangle = mandelbrot.getFrame();
+            Rectangle rectangle = mandelbrot.getFrame();
 
-                double height = mandelbrot.height();
-                double ny = height - e.getY();
+            double height = mandelbrot.height();
+            double ny = height - e.getY();
 
-                double yConverter = rectangle.height() / mandelbrot.height();
-                double xConverter = rectangle.width() / mandelbrot.width();
+            double yConverter = rectangle.height() / mandelbrot.height();
+            double xConverter = rectangle.width() / mandelbrot.width();
 
-                double nxMandelbrot =  e.getX() * xConverter;
-                double nyMandelbrot = ny * yConverter;
+            double nxMandelbrot =  e.getX() * xConverter;
+            double nyMandelbrot = ny * yConverter;
+
+            if(e.getButton() == MouseButton.SECONDARY){
+                mandelbrot.setFrameCenter(new Point(nxMandelbrot,nyMandelbrot));
+            }
+            else if(e.getClickCount() == 2){
+
+                double amplifier = 0.5;
+                if(e.isControlDown()){
+                    amplifier = 1/amplifier;
+                }
+
+
+
 
                 rectangle = rectangle.translatedBy(nxMandelbrot, nyMandelbrot);
-                rectangle = rectangle.scaledBy(1/2.0, 1/2.0);
-                rectangle =  rectangle.translatedBy(-nxMandelbrot / 2, -nyMandelbrot/2);
+                rectangle = rectangle.scaledBy(amplifier, amplifier);
+                rectangle =  rectangle.translatedBy(-nxMandelbrot * amplifier, -nyMandelbrot*amplifier);
 
                 mandelbrot.setFrameCenter(rectangle.center());
                 mandelbrot.setFrameWidth(rectangle.width());
             }
         });
+
+
 
         BorderPane mainPane = new BorderPane(imageView);
         mandelbrot.widthProperty().bind(mainPane.widthProperty());
