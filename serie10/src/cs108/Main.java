@@ -19,6 +19,9 @@ public final class Main extends Application {
         imageView.imageProperty().bind(mandelbrot.imageProperty());
 
         BorderPane mainPane = new BorderPane(imageView);
+        mandelbrot.widthProperty().bind(mainPane.widthProperty());
+        mandelbrot.heightProperty().bind(mainPane.heightProperty());
+
 
         primaryStage.setScene(new Scene(mainPane));
         primaryStage.setTitle("Mandelbrot");
