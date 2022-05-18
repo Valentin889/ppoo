@@ -4,7 +4,7 @@ import java.util.*;
 
 public class LZWConcreteEncoder implements LZWEncoder{
     private final SortedSet<Character> alphabet;
-    private final List<String> dict;
+    private final Map<String, Integer> dict;
     private final int size;
 
     public LZWConcreteEncoder(SortedSet<Character> alphabet, int size) {
@@ -12,9 +12,9 @@ public class LZWConcreteEncoder implements LZWEncoder{
             throw new IllegalArgumentException();
         this.alphabet = alphabet;
         this.size = size;
-        dict = new ArrayList<>();
+        dict = new HashMap<>();
         for (int i = 0; i < alphabet.size(); i++) {
-            dict.add( alphabet.toArray()[i].toString());
+            dict.put(alphabet.toArray()[i].toString(), i);
         }
     }
 
@@ -28,19 +28,16 @@ public class LZWConcreteEncoder implements LZWEncoder{
         while (!sb.isEmpty()){
             StringBuilder sb2 = new StringBuilder(sb.toString());
             String lastString = "";
-            boolean isInDic = false;
-            while (!dict.contains(sb2.toString())){
+            while (!dict.containsKey(sb2.toString())){
                 lastString = sb2.toString();
                 sb2.delete(sb2.length()-1, sb2.length());
             }
-            if(dict.size() < size){
-                dict.add(lastString);
+            if(dict.size() < size && !dict.containsKey(lastString)){
+                dict.put(lastString, dict.size());
             }
-            lstReturn.add(dict.indexOf(sb2.toString()));
+            lstReturn.add(dict.get(sb2.toString()));
             sb.delete(0, sb2.length());
         }
-
-
 
         return lstReturn;
     }
