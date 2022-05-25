@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 public class LZWStreamTest {
     private OutputStream newLZWOutputStream(OutputStream underlyingStream) {
-        return null; // FIXME: return a concrete LZW output stream
+        return new LZWOutputStream(underlyingStream);
     }
 
     private InputStream newLZWInputStream(InputStream underlyingStream) {
@@ -49,6 +49,7 @@ public class LZWStreamTest {
     public void outputStreamCorrectlyCompressesRepeatingStream() throws IOException {
         byte[] inputBytes = new byte[20];
         Arrays.fill(inputBytes, (byte)42);
+
         byte[] expectedBytes = new byte[] { 2, -95, 0, 16, 17, 2, 16, 49, 3 };
         ByteArrayOutputStream bs = new ByteArrayOutputStream();
         try (OutputStream lzws = newLZWOutputStream(bs)) {
