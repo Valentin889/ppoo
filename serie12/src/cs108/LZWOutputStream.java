@@ -31,8 +31,9 @@ public class LZWOutputStream extends OutputStream {
         int b = b0 & 0xFF;
         lastList.add(b);
         if(!dict.contains(lastList)){
-
-            dict.add(new ArrayList<>(lastList));
+            if(dict.size() < 4096){
+                dict.add(new ArrayList<>(lastList));
+            }
             lastList.remove(lastList.size()-1);
             bits12OutputStream.writeU12(dict.indexOf(lastList));
             lastList.clear();
