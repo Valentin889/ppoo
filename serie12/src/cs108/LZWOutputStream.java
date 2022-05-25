@@ -9,13 +9,11 @@ import java.util.Map;
 
 public class LZWOutputStream extends OutputStream {
 
-    private final OutputStream outputStream;
     private final List<List<Integer>> dict;
-    private List<Integer> lastList;
-    private  Bits12OutputStream bits12OutputStream;
+    private final List<Integer> lastList;
+    private final Bits12OutputStream bits12OutputStream;
 
     public LZWOutputStream(OutputStream outputStream) {
-        this.outputStream = outputStream;
         dict = new ArrayList<>();
         for (int i = 0; i < 256; i++) {
             dict.add(List.of(i));

@@ -18,7 +18,7 @@ public class LZWStreamTest {
     }
 
     private InputStream newLZWInputStream(InputStream underlyingStream) {
-        return null; // FIXME: return a concrete LZW input stream
+       return new LZWInputStream(underlyingStream);
     }
 
     @Test
@@ -70,6 +70,8 @@ public class LZWStreamTest {
             while ((b = lzws.read()) != -1)
                 as.write(b);
         }
+        System.out.println(Arrays.toString(expectedBytes));
+        System.out.println(Arrays.toString(as.toByteArray()));
         assertArrayEquals(expectedBytes, as.toByteArray());
     }
 
